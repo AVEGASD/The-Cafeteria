@@ -17,6 +17,10 @@ window.CAFETERIA_EVENT = {
   // Time and location, e.g. "8:30 PM · The Vegas House"
   timeAndLocation: "8:30 PM · The Vegas House",
 
+  // How many people per table this event — write it as a word to match
+  // the sentence ("Six", "Seven", "Eight"), not a numeral.
+  tableSize: "Six",
+
   // The question for this event. You can use <em>...</em> around the
   // part you want in amber/emphasis, same as the current one does.
   question: 'In the context of money, politics, religion, power, and family — <em>what do you actually care about?</em>',

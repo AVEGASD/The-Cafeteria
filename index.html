@@ -343,7 +343,7 @@ html{scroll-behavior:smooth}
 <section class="wrap rule">
   <h2>How an evening works</h2>
   <ol class="steps">
-    <li><span class="seat" aria-hidden="true"></span><div><b>You're seated in a small group</b><span>Six people to a table, with a lead whose job is to start the conversation and keep it balanced — not to referee it.</span></div></li>
+    <li><span class="seat" aria-hidden="true"></span><div><b>You're seated in a small group</b><span><span id="js-table-size">Six</span> people to a table, with a lead whose job is to start the conversation and keep it balanced — not to referee it.</span></div></li>
     <li><span class="seat" aria-hidden="true"></span><div><b>One question opens the night</b><span>Everyone gets the same question. Where it goes from there is up to the table.</span></div></li>
     <li><span class="seat" aria-hidden="true"></span><div><b>After the first round, groups rotate</b><span>New table, new people, same question from a different angle. The second round is the table's to shape.</span></div></li>
     <li><span class="seat" aria-hidden="true"></span><div><b>We close together</b><span>Everyone back in one room. One thing you heard that you're still thinking about.</span></div></li>
@@ -443,6 +443,9 @@ html{scroll-behavior:smooth}
 
   var whereEl = document.getElementById('js-time-location');
   if(whereEl) whereEl.textContent = d.timeAndLocation;
+
+  var tableSizeEl = document.getElementById('js-table-size');
+  if(tableSizeEl) tableSizeEl.textContent = d.tableSize;
 
   var statsEl = document.getElementById('js-stats');
   if(statsEl && Array.isArray(d.stats)){
