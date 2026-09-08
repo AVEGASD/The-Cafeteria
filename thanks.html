@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cafeteria — RSVP received</title>
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..800,0..100,0..1&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#0E110D;
+    --bone:#E9E5D9;
+    --bone-dim:#9B9A8C;
+    --moss-lit:#87AB8C;
+    --amber:#D9A441;
+    --display:"Fraunces",Georgia,serif;
+    --body:"Karla",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:1.25rem;
+    text-align:center;
+    padding:2rem;
+    background:var(--ink);
+    color:var(--bone);
+    font-family:var(--body);
+    line-height:1.6;
+  }
+  .mark{
+    font-family:var(--display);
+    font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 20;
+    font-weight:600;
+    font-size:1.0625rem;
+  }
+  .mark span{color:var(--moss-lit)}
+  h1{
+    font-family:var(--display);
+    font-variation-settings:"SOFT" 40,"WONK" 1,"opsz" 72;
+    font-weight:600;
+    font-size:clamp(1.6rem,1.2rem + 2vw,2.4rem);
+    color:var(--amber);
+    margin:0;
+    max-width:20ch;
+  }
+  p{color:var(--bone-dim);margin:0;max-width:32ch}
+  a{color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(217,164,65,.4)}
+  a:hover{border-bottom-color:var(--amber)}
+</style>
+</head>
+<body>
+  <div class="mark">The Cafeteria<span>.</span></div>
+  <h1>Got it.</h1>
+  <p>Your RSVP is in. We'll follow up with anything you need before the night.</p>
+  <a href="/">Back to the site</a>
+</body>
+</html>

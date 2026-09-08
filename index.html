@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cafeteria — An evening of conversation</title>
+<meta name="description" content="A recurring conversation event. Small groups, one question, the topics we were told to avoid. Money, politics, religion, power, family.">
+<meta property="og:title" content="The Cafeteria">
+<meta property="og:description" content="An evening of conversation. Small groups, one question, the topics we were told to avoid.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..800,0..100,0..1&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#0E110D;
+  --ink-2:#161B15;
+  --ink-3:#212821;
+  --moss:#46614A;
+  --moss-lit:#87AB8C;
+  --bone:#E9E5D9;
+  --bone-dim:#9B9A8C;
+  --amber:#D9A441;
+
+  --display:"Fraunces",Georgia,serif;
+  --body:"Karla",system-ui,-apple-system,sans-serif;
+
+  --gut:clamp(1.4rem,5vw,4.5rem);
+  --max:64rem;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--bone);
+  font-family:var(--body);
+  font-weight:400;
+  font-size:clamp(1rem,.95rem + .35vw,1.125rem);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--moss);color:var(--bone)}
+
+a{color:inherit}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--gut)}
+
+/* ─── HERO ─────────────────────────────────────────── */
+.hero{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding-block:clamp(1.5rem,4vh,2.75rem) clamp(2rem,5vh,3.5rem);
+  border-bottom:1px solid var(--ink-3);
+}
+.mark{
+  font-family:var(--display);
+  font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 20;
+  font-weight:600;
+  font-size:1.0625rem;
+  letter-spacing:.02em;
+  color:var(--bone);
+}
+.mark span{color:var(--moss-lit)}
+
+.hero-mid{padding-block:clamp(2.5rem,9vh,5rem)}
+.eyebrow{
+  font-size:.8125rem;
+  font-weight:500;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--moss-lit);
+  margin:0 0 clamp(1.1rem,3vh,1.9rem);
+}
+.question{
+  font-family:var(--display);
+  font-variation-settings:"SOFT" 40,"WONK" 1,"opsz" 144;
+  font-weight:400;
+  font-size:clamp(2.05rem,1.1rem + 5.4vw,4.6rem);
+  line-height:1.03;
+  letter-spacing:-.022em;
+  margin:0;
+  text-wrap:balance;
+}
+.question em{
+  font-style:normal;
+  font-weight:600;
+  color:var(--amber);
+}
+.hero-foot{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem clamp(1.25rem,4vw,2.75rem);
+  align-items:baseline;
+  padding-top:clamp(1.25rem,3vh,2rem);
+  border-top:1px solid var(--ink-3);
+}
+.when{
+  font-family:var(--display);
+  font-variation-settings:"SOFT" 20,"opsz" 40;
+  font-weight:600;
+  font-size:clamp(1.15rem,1rem + .8vw,1.6rem);
+  line-height:1.2;
+}
+.where{color:var(--bone-dim);font-size:.9375rem}
+.jump{
+  margin-left:auto;
+  font-size:.9375rem;
+  font-weight:500;
+  color:var(--amber);
+  text-decoration:none;
+  border-bottom:1px solid rgba(217,164,65,.4);
+  padding-bottom:2px;
+  transition:border-color .18s;
+}
+.jump:hover{border-bottom-color:var(--amber)}
+
+/* ─── SECTIONS ─────────────────────────────────────── */
+section{padding-block:clamp(3.5rem,11vh,7rem)}
+.rule{border-top:1px solid var(--ink-3)}
+
+h2{
+  font-family:var(--display);
+  font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 60;
+  font-weight:500;
+  font-size:clamp(1.6rem,1.25rem + 1.6vw,2.5rem);
+  line-height:1.14;
+  letter-spacing:-.014em;
+  margin:0 0 clamp(1.4rem,3.5vh,2.2rem);
+  max-width:22ch;
+}
+.prose{max-width:38rem}
+.prose p{margin:0 0 1.15em}
+.prose p:last-child{margin-bottom:0}
+.lead{
+  font-family:var(--display);
+  font-variation-settings:"SOFT" 40,"opsz" 30;
+  font-size:clamp(1.15rem,1.02rem + .55vw,1.4rem);
+  line-height:1.5;
+  color:var(--bone);
+}
+.dim{color:var(--bone-dim)}
+.close{
+  font-family:var(--display);
+  font-variation-settings:"SOFT" 40,"WONK" 1,"opsz" 72;
+  font-weight:600;
+  font-size:clamp(1.5rem,1.15rem + 1.5vw,2.3rem);
+  line-height:1.2;
+  color:var(--amber);
+  margin-top:clamp(1.6rem,4vh,2.4rem);
+}
+
+/* format list */
+.steps{
+  list-style:none;
+  margin:0;
+  padding:0;
+  max-width:40rem;
+  border-top:1px solid var(--ink-3);
+}
+.steps li{
+  padding-block:clamp(1rem,2.5vh,1.4rem);
+  border-bottom:1px solid var(--ink-3);
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:0 clamp(.9rem,2.5vw,1.5rem);
+}
+.seat{
+  width:.6rem;height:.6rem;
+  border-radius:50%;
+  background:var(--moss);
+  margin-top:.62rem;
+}
+.steps b{
+  display:block;
+  font-family:var(--body);
+  font-weight:600;
+  font-size:1.0625rem;
+  margin-bottom:.15rem;
+}
+.steps span{color:var(--bone-dim);font-size:.9688rem;line-height:1.55}
+
+/* rules */
+.rules{
+  margin-top:clamp(2rem,5vh,3rem);
+  padding:clamp(1.3rem,3.5vw,2rem);
+  background:var(--ink-2);
+  max-width:40rem;
+}
+.rules h3{
+  font-family:var(--body);
+  font-weight:600;
+  font-size:.8125rem;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--moss-lit);
+  margin:0 0 1rem;
+}
+.rules ol{margin:0;padding-left:1.1rem;color:var(--bone)}
+.rules li{margin-bottom:.55rem}
+.rules li:last-child{margin-bottom:0}
+
+/* ─── DATA ─────────────────────────────────────────── */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));
+  gap:1px;
+  background:var(--ink-3);
+  border:1px solid var(--ink-3);
+  margin-bottom:clamp(1.8rem,4.5vh,2.6rem);
+}
+.stat{background:var(--ink);padding:clamp(1.1rem,3vw,1.6rem)}
+.stat b{
+  display:block;
+  font-family:var(--display);
+  font-variation-settings:"SOFT" 20,"opsz" 96;
+  font-weight:500;
+  font-size:clamp(2.2rem,1.6rem + 2.4vw,3.2rem);
+  line-height:1;
+  letter-spacing:-.03em;
+  margin-bottom:.5rem;
+}
+.stat.hi b{color:var(--amber)}
+.stat span{
+  display:block;
+  font-size:.8125rem;
+  line-height:1.4;
+  color:var(--bone-dim);
+}
+.caveat{
+  max-width:38rem;
+  font-size:.9688rem;
+  color:var(--bone-dim);
+  border-left:2px solid var(--moss);
+  padding-left:clamp(.9rem,2.5vw,1.25rem);
+}
+.caveat strong{color:var(--bone);font-weight:600}
+
+/* ─── RSVP ─────────────────────────────────────────── */
+#rsvp{background:var(--ink-2)}
+form{max-width:34rem;margin-top:clamp(1.6rem,4vh,2.2rem)}
+.field{margin-bottom:1.2rem}
+label{
+  display:block;
+  font-size:.875rem;
+  font-weight:500;
+  margin-bottom:.4rem;
+}
+.hint{display:block;font-weight:400;color:var(--bone-dim);font-size:.8125rem;margin-top:.15rem}
+input[type=text],input[type=email],input[type=tel],textarea,select{
+  width:100%;
+  background:var(--ink);
+  border:1px solid var(--ink-3);
+  color:var(--bone);
+  font-family:var(--body);
+  font-size:1rem;
+  padding:.72rem .85rem;
+  border-radius:2px;
+}
+textarea{min-height:5.5rem;resize:vertical}
+input:focus,textarea:focus,select:focus{border-color:var(--moss-lit);outline:none}
+.choice{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:.15rem}
+.choice label{
+  display:flex;align-items:center;gap:.45rem;
+  font-weight:400;font-size:1rem;margin:0;cursor:pointer;
+}
+input[type=radio]{accent-color:var(--moss-lit);width:1.05rem;height:1.05rem}
+button{
+  font-family:var(--body);
+  font-weight:600;
+  font-size:1rem;
+  background:var(--amber);
+  color:var(--ink);
+  border:0;
+  padding:.85rem 2rem;
+  border-radius:2px;
+  cursor:pointer;
+  margin-top:.6rem;
+  transition:background .18s;
+}
+button:hover{background:#E8B558}
+
+/* ─── FOOTER ───────────────────────────────────────── */
+footer{
+  padding-block:clamp(2.5rem,7vh,4rem);
+  border-top:1px solid var(--ink-3);
+  color:var(--bone-dim);
+  font-size:.9375rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem 2rem;
+  align-items:baseline;
+}
+footer .mark{font-size:1rem}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="mark">The Cafeteria<span>.</span></div>
+  </div>
+
+  <div class="wrap hero-mid">
+    <p class="eyebrow">The question for this one</p>
+    <h1 class="question" id="js-question">In the context of money, politics, religion, power, and family — <em>what do you actually care about?</em></h1>
+  </div>
+
+  <div class="wrap">
+    <div class="hero-foot">
+      <div>
+        <div class="when" id="js-date">Saturday, October 4</div>
+        <div class="where" id="js-time-location">8:30 PM · The Vegas House</div>
+      </div>
+      <a class="jump" href="#rsvp">RSVP</a>
+    </div>
+  </div>
+</header>
+
+<!-- WHAT THIS IS -->
+<section class="wrap">
+  <div class="prose">
+    <p class="lead">When I was younger, the cafeteria was the first place I remember having truly deep conversations. We were young. We had no answers. We were thinking together, openly, trying to figure things out.</p>
+    <p class="lead">It didn't matter what the topic was. What mattered was we were talking and thinking with one another.</p>
+    <p class="lead">Thousands of years ago the Greeks and Romans had a version of this. They called it the agora — where philosophers, business owners, professionals, and common folk came together to discuss the issues of their time.</p>
+    <p class="close">Today we have The Cafeteria.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="wrap rule">
+  <h2>How an evening works</h2>
+  <ol class="steps">
+    <li><span class="seat" aria-hidden="true"></span><div><b>You're seated in a small group</b><span>Six people to a table, with a lead whose job is to start the conversation and keep it balanced — not to referee it.</span></div></li>
+    <li><span class="seat" aria-hidden="true"></span><div><b>One question opens the night</b><span>Everyone gets the same question. Where it goes from there is up to the table.</span></div></li>
+    <li><span class="seat" aria-hidden="true"></span><div><b>After the first round, groups rotate</b><span>New table, new people, same question from a different angle. The second round is the table's to shape.</span></div></li>
+    <li><span class="seat" aria-hidden="true"></span><div><b>We close together</b><span>Everyone back in one room. One thing you heard that you're still thinking about.</span></div></li>
+  </ol>
+
+  <div class="rules">
+    <h3>The only rules</h3>
+    <ol>
+      <li>Go at ideas, not people.</li>
+      <li>Let people finish.</li>
+      <li>If you feel yourself getting heated, that's fine. You just don't get to lose control of it.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- DATA -->
+<section class="wrap rule">
+  <h2>What we've found so far</h2>
+  <p class="prose dim" style="margin-bottom:clamp(1.8rem,4vh,2.4rem)">Every attendee fills out a short survey before and after. Two events in, the numbers say something worth paying attention to.</p>
+
+  <div class="stats" id="js-stats">
+    <div class="stat hi"><b>5.0</b><span>Felt respected, even when their ideas were challenged</span></div>
+    <div class="stat"><b>4.7</b><span>Felt heard</span></div>
+    <div class="stat"><b>9/9</b><span>Left with a view shifted or better understood</span></div>
+    <div class="stat"><b>9/9</b><span>Said they'd come back</span></div>
+  </div>
+
+  <p class="caveat"><strong>The honest caveat:</strong> nobody in the room has identified as conservative yet. That's the limit on anything we can claim right now, and it's the thing this next one is built to change. If you disagree with the people who invited you, you're exactly who should be there.</p>
+</section>
+
+<!-- RSVP -->
+<section id="rsvp" class="rule">
+  <div class="wrap">
+    <h2>Pull up a chair</h2>
+    <p class="prose dim">Invite only. You may bring one person — someone you trust to represent themselves truly, and ideally someone who won't agree with you.</p>
+
+    <!-- Handled by Netlify Forms — see README.md for setup and how to switch providers -->
+    <form name="rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+      <input type="hidden" name="form-name" value="rsvp">
+      <p style="position:absolute;left:-9999px" aria-hidden="true">
+        <label>Leave this field blank<input name="bot-field" tabindex="-1" autocomplete="off"></label>
+      </p>
+
+      <div class="field">
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" required autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label for="contact">Phone or email</label>
+        <input id="contact" name="contact" type="text" required autocomplete="email">
+        <span class="hint">Only used for event updates.</span>
+      </div>
+
+      <div class="field">
+        <label>Are you coming?</label>
+        <div class="choice">
+          <label><input type="radio" name="attending" value="yes" required> Yes</label>
+          <label><input type="radio" name="attending" value="no"> Can't make it</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="guest">Bringing someone? Their name</label>
+        <input id="guest" name="guest" type="text" autocomplete="off">
+        <span class="hint">Leave blank if you're coming solo.</span>
+      </div>
+
+      <div class="field">
+        <label for="note">Anything we should know?</label>
+        <textarea id="note" name="note"></textarea>
+      </div>
+
+      <button type="submit">Send RSVP</button>
+    </form>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="mark">The Cafeteria<span>.</span></div>
+  <div>Hosted by Andre &amp; Alexis Vegas</div>
+  <div>Two drink maximum. Light snacks provided.</div>
+</footer>
+
+<!-- Per-event content lives in config.js — edit that file, not this one. -->
+<script src="config.js"></script>
+<script>
+(function(){
+  var d = window.CAFETERIA_EVENT;
+  if(!d) return;
+
+  var q = document.getElementById('js-question');
+  if(q) q.innerHTML = d.question;
+
+  var dateEl = document.getElementById('js-date');
+  if(dateEl) dateEl.textContent = d.date;
+
+  var whereEl = document.getElementById('js-time-location');
+  if(whereEl) whereEl.textContent = d.timeAndLocation;
+
+  var statsEl = document.getElementById('js-stats');
+  if(statsEl && Array.isArray(d.stats)){
+    statsEl.innerHTML = d.stats.map(function(s){
+      var cls = 'stat' + (s.highlight ? ' hi' : '');
+      return '<div class="' + cls + '"><b>' + s.value + '</b><span>' + s.label + '</span></div>';
+    }).join('');
+  }
+})();
+</script>
+</body>
+</html>
