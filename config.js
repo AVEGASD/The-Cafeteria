@@ -7,19 +7,27 @@
 
   Don't remove the quotes or commas. If you're not sure, copy the
   exact punctuation style of the line you're editing.
+
+  Note: the hero's tagline ("An evening of conversation.") and the
+  topics line (Money · Politics · Religion · Power · Family) are
+  permanent — they don't change between events, so they're not here.
+  They live directly in index.html if they ever need to change.
 */
 
 window.CAFETERIA_EVENT = {
 
-  // The date shown in the hero, e.g. "Saturday, October 4"
-  date: "Saturday, October 4",
+  // The date shown in the hero, e.g. "Saturday, September 26"
+  date: "Saturday, September 26",
 
-  // Time and location, e.g. "8:30 PM · The Vegas House"
-  timeAndLocation: "8:30 PM · The Vegas House",
+  // Time and location, e.g. "7:00 PM · The Vegas House"
+  timeAndLocation: "7:00 PM · The Vegas House",
 
   // How many people per table this event — write it as a word to match
   // the sentence ("Six", "Seven", "Eight"), not a numeral.
   tableSize: "Six",
+
+  // The small label above the question, e.g. "This one opens with"
+  askEyebrow: "This one opens with",
 
   // The question for this event. You can use <em>...</em> around the
   // part you want in amber/emphasis, same as the current one does.

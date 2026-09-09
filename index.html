@@ -50,6 +50,125 @@ a{color:inherit}
 
 .wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--gut)}
 
+/* ─── THRESHOLD ────────────────────────────────────── */
+body.shut{overflow:hidden}
+
+.threshold{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  perspective:1500px;
+  perspective-origin:50% 48%;
+}
+
+/* the light on the other side */
+.light{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  opacity:0;
+  background:
+    radial-gradient(ellipse 52% 62% at 50% 50%,
+      #FBF6E9 0%,
+      #F0E4C6 22%,
+      #C7B48A 44%,
+      #6E6A55 66%,
+      var(--ink) 88%);
+  transition:opacity .7s ease-out;
+}
+
+.doorframe{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  transform-style:preserve-3d;
+  transition:transform 1.5s cubic-bezier(.5,0,.2,1);
+}
+.door{
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:50.2%;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.025),rgba(0,0,0,.12)),
+    var(--ink-2);
+  backface-visibility:hidden;
+  transition:transform 1.5s cubic-bezier(.55,0,.25,1),
+             filter 1.5s ease;
+}
+.door-l{
+  left:0;
+  transform-origin:left center;
+  border-right:1px solid var(--moss);
+}
+.door-r{
+  right:0;
+  transform-origin:right center;
+  border-left:1px solid rgba(70,97,74,.35);
+}
+
+.threshold-inner{
+  position:relative;
+  z-index:3;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(.6rem,2vh,1rem);
+  padding:var(--gut);
+  text-align:center;
+  transition:opacity .4s ease;
+}
+.th-mark{
+  font-family:var(--display);
+  font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 96;
+  font-weight:600;
+  font-size:clamp(1.9rem,1.3rem + 2.6vw,3.1rem);
+  letter-spacing:-.02em;
+  margin:0;
+}
+.th-mark span{color:var(--moss-lit)}
+.th-line{
+  font-size:clamp(.9375rem,.9rem + .25vw,1.0625rem);
+  letter-spacing:.04em;
+  color:var(--bone-dim);
+  margin:0 0 clamp(1.2rem,3.5vh,2rem);
+}
+.th-enter{
+  background:none;
+  color:var(--amber);
+  border:1px solid rgba(217,164,65,.45);
+  font-size:.875rem;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:.8rem 2.6rem;
+  margin:0;
+  transition:background .2s,color .2s,border-color .2s;
+}
+.th-enter:hover{background:var(--amber);color:var(--ink);border-color:var(--amber)}
+
+/* opening — doors swing inward on their hinges, light floods in */
+.threshold.open .threshold-inner{opacity:0}
+.threshold.open .light{opacity:1}
+.threshold.open .doorframe{transform:scale(1.28)}
+.threshold.open .door-l{transform:rotateY(88deg);filter:brightness(.42)}
+.threshold.open .door-r{transform:rotateY(-88deg);filter:brightness(.42)}
+
+/* then the light falls away into the room */
+.threshold.fade .light{opacity:0;transition:opacity 1s ease-in}
+
+.threshold.gone{display:none}
+
+@media (prefers-reduced-motion:reduce){
+  .doorframe,.door,.light{transition:opacity .35s ease}
+  .threshold.open .doorframe{transform:none}
+  .threshold.open .door-l,
+  .threshold.open .door-r{transform:none;opacity:0}
+  .threshold.open .light{opacity:0}
+}
+
 /* ─── HERO ─────────────────────────────────────────── */
 .hero{
   min-height:100svh;
@@ -76,17 +195,45 @@ a{color:inherit}
   letter-spacing:.09em;
   text-transform:uppercase;
   color:var(--moss-lit);
-  margin:0 0 clamp(1.1rem,3vh,1.9rem);
+  margin:0 0 .7rem;
 }
-.question{
+.tagline{
   font-family:var(--display);
   font-variation-settings:"SOFT" 40,"WONK" 1,"opsz" 144;
   font-weight:400;
-  font-size:clamp(2.05rem,1.1rem + 5.4vw,4.6rem);
-  line-height:1.03;
-  letter-spacing:-.022em;
-  margin:0;
+  font-size:clamp(2.4rem,1.3rem + 5.6vw,4.8rem);
+  line-height:1.02;
+  letter-spacing:-.025em;
+  margin:0 0 clamp(1rem,2.6vh,1.6rem);
   text-wrap:balance;
+}
+.topics{
+  font-family:var(--body);
+  font-weight:500;
+  font-size:clamp(.9375rem,.88rem + .3vw,1.125rem);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--moss-lit);
+  margin:0;
+  line-height:1.6;
+}
+.topics i{font-style:normal;color:var(--ink-3);padding-inline:.15em}
+
+.ask{
+  margin-top:clamp(2.2rem,6vh,3.4rem);
+  padding-top:clamp(1.3rem,3.2vh,1.9rem);
+  border-top:1px solid var(--ink-3);
+  max-width:44rem;
+}
+.question{
+  font-family:var(--display);
+  font-variation-settings:"SOFT" 40,"opsz" 60;
+  font-weight:400;
+  font-size:clamp(1.3rem,1.08rem + 1.05vw,1.85rem);
+  line-height:1.32;
+  letter-spacing:-.012em;
+  margin:0;
+  text-wrap:pretty;
 }
 .question em{
   font-style:normal;
@@ -305,7 +452,21 @@ footer .mark{font-size:1rem}
 html{scroll-behavior:smooth}
 </style>
 </head>
-<body>
+<body class="shut">
+
+<!-- THRESHOLD — the double doors -->
+<div class="threshold" id="threshold">
+  <div class="light" aria-hidden="true"></div>
+  <div class="doorframe" aria-hidden="true">
+    <div class="door door-l"></div>
+    <div class="door door-r"></div>
+  </div>
+  <div class="threshold-inner">
+    <p class="th-mark">The Cafeteria<span>.</span></p>
+    <p class="th-line">Come sit down.</p>
+    <button class="th-enter" id="enter" type="button">Enter</button>
+  </div>
+</div>
 
 <!-- HERO -->
 <header class="hero">
@@ -314,15 +475,22 @@ html{scroll-behavior:smooth}
   </div>
 
   <div class="wrap hero-mid">
-    <p class="eyebrow">The question for this one</p>
-    <h1 class="question" id="js-question">In the context of money, politics, religion, power, and family — <em>what do you actually care about?</em></h1>
+    <!-- PERMANENT — introduces the project regardless of the question -->
+    <h1 class="tagline">An evening of conversation.</h1>
+    <p class="topics">Money <i>·</i> Politics <i>·</i> Religion <i>·</i> Power <i>·</i> Family</p>
+
+    <!-- ROTATES EACH EVENT — driven by config.js -->
+    <div class="ask">
+      <p class="eyebrow" id="js-ask-eyebrow">This one opens with</p>
+      <p class="question" id="js-question">In the context of money, politics, religion, power, and family — <em>what do you actually care about?</em></p>
+    </div>
   </div>
 
   <div class="wrap">
     <div class="hero-foot">
       <div>
-        <div class="when" id="js-date">Saturday, October 4</div>
-        <div class="where" id="js-time-location">8:30 PM · The Vegas House</div>
+        <div class="when" id="js-date">Saturday, September 26</div>
+        <div class="where" id="js-time-location">7:00 PM · The Vegas House</div>
       </div>
       <a class="jump" href="#rsvp">RSVP</a>
     </div>
@@ -435,6 +603,9 @@ html{scroll-behavior:smooth}
   var d = window.CAFETERIA_EVENT;
   if(!d) return;
 
+  var eyebrowEl = document.getElementById('js-ask-eyebrow');
+  if(eyebrowEl) eyebrowEl.textContent = d.askEyebrow;
+
   var q = document.getElementById('js-question');
   if(q) q.innerHTML = d.question;
 
@@ -456,5 +627,32 @@ html{scroll-behavior:smooth}
   }
 })();
 </script>
+
+<!-- The entrance — plays for every visitor, every visit -->
+<script>
+(function(){
+  var th = document.getElementById('threshold');
+  var btn = document.getElementById('enter');
+  var slow = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function open(){
+    th.classList.add('open');
+    if(slow){
+      document.body.classList.remove('shut');
+      setTimeout(function(){ th.classList.add('gone'); }, 400);
+      return;
+    }
+    setTimeout(function(){ th.classList.add('fade'); }, 1150);
+    setTimeout(function(){
+      document.body.classList.remove('shut');
+      th.classList.add('gone');
+    }, 2250);
+  }
+
+  btn.addEventListener('click', open);
+  btn.focus({preventScroll:true});
+})();
+</script>
+
 </body>
 </html>
