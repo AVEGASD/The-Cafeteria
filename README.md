@@ -24,6 +24,10 @@ The form in `index.html` is already wired for it (`data-netlify="true"`). Once t
 
 That's the whole setup. No signup elsewhere, no code changes.
 
+### Three forms, not one
+
+The site now has three separate Netlify Forms: `rsvp`, `interest` (for people without an invite), and `feedback` (private notes to you, not posted anywhere). Each is a distinct form Netlify tracks separately — separate dashboard tab, separate submission list, separate notification setting. Repeat the notification setup above for each one: **Forms → [form name] → Settings and usage → Form notifications → Add notification → Email notification**. All three will appear in the Forms dashboard after your next deploy, since Netlify only detects forms by scanning the raw HTML at build time.
+
 ### If you'd rather use Formspree instead (e.g. you end up on Vercel, not Netlify)
 
 1. Go to [formspree.io](https://formspree.io), sign up free, create a new form.

@@ -590,6 +590,67 @@ html{scroll-behavior:smooth}
   </div>
 </section>
 
+<!-- INTEREST -->
+<section id="interest" class="wrap rule">
+  <h2>Not on the list yet?</h2>
+  <p class="prose dim">Every event so far has been invite only. If you'd like to be considered for the next one, tell us here.</p>
+
+  <form name="interest" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks-interest.html">
+    <input type="hidden" name="form-name" value="interest">
+    <p style="position:absolute;left:-9999px" aria-hidden="true">
+      <label>Leave this field blank<input name="bot-field" tabindex="-1" autocomplete="off"></label>
+    </p>
+
+    <div class="field">
+      <label for="int-name">Your name</label>
+      <input id="int-name" name="name" type="text" required autocomplete="name">
+    </div>
+
+    <div class="field">
+      <label for="int-contact">Phone or email</label>
+      <input id="int-contact" name="contact" type="text" required autocomplete="email">
+    </div>
+
+    <div class="field">
+      <label for="int-note">Anything you want us to know?</label>
+      <textarea id="int-note" name="note"></textarea>
+      <span class="hint">How you heard about us, why you'd like to come, whatever's relevant.</span>
+    </div>
+
+    <button type="submit">Ask to be considered</button>
+  </form>
+</section>
+
+<!-- FEEDBACK -->
+<section id="feedback" class="wrap rule">
+  <h2>Tell us what you think</h2>
+  <p class="prose dim">Comments, feedback, suggestions. This goes straight to us, not posted anywhere.</p>
+
+  <form name="feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks-feedback.html">
+    <input type="hidden" name="form-name" value="feedback">
+    <p style="position:absolute;left:-9999px" aria-hidden="true">
+      <label>Leave this field blank<input name="bot-field" tabindex="-1" autocomplete="off"></label>
+    </p>
+
+    <div class="field">
+      <label for="fb-name">Your name (optional)</label>
+      <input id="fb-name" name="name" type="text" autocomplete="name">
+    </div>
+
+    <div class="field">
+      <label for="fb-contact">Email (optional, if you want a reply)</label>
+      <input id="fb-contact" name="contact" type="text" autocomplete="email">
+    </div>
+
+    <div class="field">
+      <label for="fb-message">Your message</label>
+      <textarea id="fb-message" name="message" required></textarea>
+    </div>
+
+    <button type="submit">Send</button>
+  </form>
+</section>
+
 <footer class="wrap">
   <div class="mark">The Cafeteria<span>.</span></div>
   <div>Hosted by Andre &amp; Alexis Vegas</div>
