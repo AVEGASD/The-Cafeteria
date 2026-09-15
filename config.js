@@ -31,7 +31,7 @@ window.CAFETERIA_EVENT = {
 
   // The question for this event. You can use <em>...</em> around the
   // part you want in amber/emphasis, same as the current one does.
-  question: 'In the context of money, politics, religion, power, and family — <em>what do you actually care about?</em>',
+  question: 'In the context of money, politics, religion, power, and family — <em>what should we do?</em>',
 
   // Survey stats shown in "What we've found so far".
   // Add, remove, or edit entries as needed — the layout adjusts automatically.
