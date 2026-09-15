@@ -1,10 +1,11 @@
 # The Cafeteria — website
 
-Static site, no build step, three files that matter:
+Static site, no build step. The files that matter:
 
 - `index.html` — the page itself. Design is finished; don't need to touch this between events.
 - `config.js` — **the only file you edit between events.** Date, time, the question, the survey stats.
-- `thanks.html` — the page people see right after they submit the RSVP form.
+- `thanks.html` — the page people see after submitting the RSVP form (either branch — invited or not).
+- `thanks-feedback.html` — the page people see after submitting the feedback form.
 
 ## Editing between events
 
@@ -24,9 +25,11 @@ The form in `index.html` is already wired for it (`data-netlify="true"`). Once t
 
 That's the whole setup. No signup elsewhere, no code changes.
 
-### Three forms, not one
+### Two forms: rsvp and feedback
 
-The site now has three separate Netlify Forms: `rsvp`, `interest` (for people without an invite), and `feedback` (private notes to you, not posted anywhere). Each is a distinct form Netlify tracks separately — separate dashboard tab, separate submission list, separate notification setting. Repeat the notification setup above for each one: **Forms → [form name] → Settings and usage → Form notifications → Add notification → Email notification**. All three will appear in the Forms dashboard after your next deploy, since Netlify only detects forms by scanning the raw HTML at build time.
+The site has two separate Netlify Forms: `rsvp` and `feedback` (private notes to you, not posted anywhere). Each is tracked separately — separate dashboard tab, separate submission list, separate notification setting. Repeat the notification setup above for `feedback` too: **Forms → feedback → Settings and usage → Form notifications → Add notification → Email notification**.
+
+The `rsvp` form does double duty: one question near the top ("Were you personally invited to this one?") branches the rest of the form. Answering "Yes" shows the normal attending/guest fields; answering "Not yet" hides them and treats the submission as an interest signup instead — the submit button even relabels itself accordingly. Every field is still captured in the raw HTML either way, so nothing is missing from the Netlify dashboard regardless of which fields were hidden at submit time. To get your real headcount before an event, filter the `rsvp` submissions by the `invited` column — everyone else in that same column is your future-event interest list.
 
 ### If you'd rather use Formspree instead (e.g. you end up on Vercel, not Netlify)
 

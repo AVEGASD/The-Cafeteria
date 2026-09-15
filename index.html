@@ -546,7 +546,7 @@ html{scroll-behavior:smooth}
 <section id="rsvp" class="rule">
   <div class="wrap">
     <h2>Pull up a chair</h2>
-    <p class="prose dim">Invite only. You may bring one person — someone you trust to represent themselves truly, and ideally someone who won't agree with you.</p>
+    <p class="prose dim">You may bring one person — someone you trust to represent themselves truly, and ideally someone who won't agree with you.</p>
 
     <!-- Handled by Netlify Forms — see README.md for setup and how to switch providers -->
     <form name="rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
@@ -567,14 +567,22 @@ html{scroll-behavior:smooth}
       </div>
 
       <div class="field">
+        <label>Were you personally invited to this one?</label>
+        <div class="choice">
+          <label><input type="radio" name="invited" value="yes" id="inv-yes" required> Yes</label>
+          <label><input type="radio" name="invited" value="no" id="inv-no"> Not yet</label>
+        </div>
+      </div>
+
+      <div class="field" id="attending-field">
         <label>Are you coming?</label>
         <div class="choice">
-          <label><input type="radio" name="attending" value="yes" required> Yes</label>
+          <label><input type="radio" name="attending" value="yes"> Yes</label>
           <label><input type="radio" name="attending" value="no"> Can't make it</label>
         </div>
       </div>
 
-      <div class="field">
+      <div class="field" id="guest-field">
         <label for="guest">Bringing someone? Their name</label>
         <input id="guest" name="guest" type="text" autocomplete="off">
         <span class="hint">Leave blank if you're coming solo.</span>
@@ -585,40 +593,9 @@ html{scroll-behavior:smooth}
         <textarea id="note" name="note"></textarea>
       </div>
 
-      <button type="submit">Send RSVP</button>
+      <button type="submit" id="rsvp-submit">Send RSVP</button>
     </form>
   </div>
-</section>
-
-<!-- INTEREST -->
-<section id="interest" class="wrap rule">
-  <h2>Not on the list yet?</h2>
-  <p class="prose dim">Every event so far has been invite only. If you'd like to be considered for the next one, tell us here.</p>
-
-  <form name="interest" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks-interest.html">
-    <input type="hidden" name="form-name" value="interest">
-    <p style="position:absolute;left:-9999px" aria-hidden="true">
-      <label>Leave this field blank<input name="bot-field" tabindex="-1" autocomplete="off"></label>
-    </p>
-
-    <div class="field">
-      <label for="int-name">Your name</label>
-      <input id="int-name" name="name" type="text" required autocomplete="name">
-    </div>
-
-    <div class="field">
-      <label for="int-contact">Phone or email</label>
-      <input id="int-contact" name="contact" type="text" required autocomplete="email">
-    </div>
-
-    <div class="field">
-      <label for="int-note">Anything you want us to know?</label>
-      <textarea id="int-note" name="note"></textarea>
-      <span class="hint">How you heard about us, why you'd like to come, whatever's relevant.</span>
-    </div>
-
-    <button type="submit">Ask to be considered</button>
-  </form>
 </section>
 
 <!-- FEEDBACK -->
@@ -686,6 +663,27 @@ html{scroll-behavior:smooth}
       return '<div class="' + cls + '"><b>' + s.value + '</b><span>' + s.label + '</span></div>';
     }).join('');
   }
+})();
+</script>
+
+<!-- RSVP form branches on whether the visitor was invited -->
+<script>
+(function(){
+  var yes = document.getElementById('inv-yes');
+  var no = document.getElementById('inv-no');
+  var attendingField = document.getElementById('attending-field');
+  var guestField = document.getElementById('guest-field');
+  var submitBtn = document.getElementById('rsvp-submit');
+
+  function update(){
+    var invited = yes.checked;
+    attendingField.style.display = invited ? '' : 'none';
+    guestField.style.display = invited ? '' : 'none';
+    submitBtn.textContent = invited ? 'Send RSVP' : 'Ask to be considered';
+  }
+
+  yes.addEventListener('change', update);
+  no.addEventListener('change', update);
 })();
 </script>
 
