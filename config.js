@@ -37,10 +37,10 @@ window.CAFETERIA_EVENT = {
   // Add, remove, or edit entries as needed — the layout adjusts automatically.
   // Set highlight: true on at most one or two you want to stand out in amber.
   stats: [
-    { value: "5.0", label: "Felt respected, even when their ideas were challenged", highlight: true },
-    { value: "4.7", label: "Felt heard", highlight: false },
-    { value: "9/9", label: "Left with a view shifted or better understood", highlight: false },
-    { value: "9/9", label: "Said they'd come back", highlight: false }
+    { value: "4.9", label: "Felt respected, even when their ideas were challenged", highlight: true },
+    { value: "4.4", label: "Felt heard", highlight: false },
+    { value: "13/15", label: "Left with a view shifted or better understood", highlight: false },
+    { value: "15/15", label: "Said they'd come back", highlight: false }
   ]
 
   // Note: the RSVP form itself is wired to Netlify Forms, not a URL in
