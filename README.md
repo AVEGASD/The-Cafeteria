@@ -3,7 +3,7 @@
 Static site, no build step. The files that matter:
 
 - `index.html` — the page itself. Design is finished; don't need to touch this between events.
-- `config.js` — **the only file you edit between events.** Date, time, the question, the survey stats.
+- `config.js` — **the only file you edit between events.** Date, time, location, the question(s) per round, the survey stats.
 - `thanks.html` — the page people see after submitting the RSVP form (either branch — invited or not).
 - `thanks-feedback.html` — the page people see after submitting the feedback form.
 

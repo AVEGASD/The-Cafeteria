@@ -16,22 +16,32 @@
 
 window.CAFETERIA_EVENT = {
 
-  // The date shown in the hero, e.g. "Saturday, September 26"
-  date: "Saturday, September 26",
+  // The date shown in the hero, e.g. "Saturday, November 21"
+  date: "Saturday, November 21",
 
-  // Time and location, e.g. "7:00 PM · The Vegas House"
-  timeAndLocation: "7:00 PM · The Vegas House",
+  // Time and location. Write "TBD" (or leave "") for anything not set yet —
+  // it shows as a quiet "Time TBD" / "Location TBD" under the date, and
+  // switches to the real value the moment you type it in. Each is independent.
+  time: "TBD",
+  location: "TBD",
 
   // How many people per table this event — write it as a word to match
   // the sentence ("Six", "Seven", "Eight"), not a numeral.
   tableSize: "Six",
 
-  // The small label above the question, e.g. "This one opens with"
-  askEyebrow: "This one opens with",
+  // The question(s) for this event, one entry per round, shown in order.
+  //   label    - the small line above the question, e.g. "Round 1 — Protests"
+  //   question - the question itself. You can use <em>...</em> around a part
+  //              you want in amber/emphasis.
+  // Two entries = two rounds. For a one-question night, keep a single entry:
+  // leave label as "" and it reads "This one opens with" (see askEyebrow).
+  rounds: [
+    { label: "Round 1 — Protests",      question: "What would it take for you to protest?" },
+    { label: "Round 2 — Mental health", question: "How are we actually handling our mental health?" }
+  ],
 
-  // The question for this event. You can use <em>...</em> around the
-  // part you want in amber/emphasis, same as the current one does.
-  question: 'In the context of money, politics, religion, power, and family — <em>what should we do?</em>',
+  // Only used when there's a single round with no label of its own.
+  askEyebrow: "This one opens with",
 
   // Survey stats shown in "What we've found so far".
   // Add, remove, or edit entries as needed — the layout adjusts automatically.

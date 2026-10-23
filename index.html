@@ -225,6 +225,11 @@ body.shut{overflow:hidden}
   border-top:1px solid var(--ink-3);
   max-width:44rem;
 }
+.round + .round{
+  margin-top:clamp(1.4rem,3.6vh,2.1rem);
+  padding-top:clamp(1.3rem,3.2vh,1.9rem);
+  border-top:1px solid var(--ink-3);
+}
 .question{
   font-family:var(--display);
   font-variation-settings:"SOFT" 40,"opsz" 60;
@@ -256,6 +261,7 @@ body.shut{overflow:hidden}
   line-height:1.2;
 }
 .where{color:var(--bone-dim);font-size:.9375rem}
+.where .tbd{opacity:.65}
 .jump{
   margin-left:auto;
   font-size:.9375rem;
@@ -477,20 +483,26 @@ html{scroll-behavior:smooth}
   <div class="wrap hero-mid">
     <!-- PERMANENT — introduces the project regardless of the question -->
     <h1 class="tagline">An evening of conversation.</h1>
-    <p class="topics">Money <i>·</i> Politics <i>·</i> Religion <i>·</i> Power <i>·</i> Family</p>
+    <p class="topics">Money <i>·</i> Politics <i>·</i> Religion <i>·</i> Power <i>·</i> Family…</p>
 
     <!-- ROTATES EACH EVENT — driven by config.js -->
-    <div class="ask">
-      <p class="eyebrow" id="js-ask-eyebrow">This one opens with</p>
-      <p class="question" id="js-question">In the context of money, politics, religion, power, and family — <em>what do you actually care about?</em></p>
+    <div class="ask" id="js-ask">
+      <div class="round">
+        <p class="eyebrow">Round 1 — Protests</p>
+        <p class="question">What would it take for you to protest?</p>
+      </div>
+      <div class="round">
+        <p class="eyebrow">Round 2 — Mental health</p>
+        <p class="question">How are we actually handling our mental health?</p>
+      </div>
     </div>
   </div>
 
   <div class="wrap">
     <div class="hero-foot">
       <div>
-        <div class="when" id="js-date">Saturday, September 26</div>
-        <div class="where" id="js-time-location">7:00 PM · The Vegas House</div>
+        <div class="when" id="js-date">Saturday, November 21</div>
+        <div class="where" id="js-time-location"><span class="tbd">Time TBD</span> · <span class="tbd">Location TBD</span></div>
       </div>
       <a class="jump" href="#rsvp">RSVP</a>
     </div>
@@ -512,8 +524,8 @@ html{scroll-behavior:smooth}
   <h2>How an evening works</h2>
   <ol class="steps">
     <li><span class="seat" aria-hidden="true"></span><div><b>You're seated in a small group</b><span><span id="js-table-size">Six</span> people to a table, with a lead whose job is to start the conversation and keep it balanced — not to referee it.</span></div></li>
-    <li><span class="seat" aria-hidden="true"></span><div><b>One question opens the night</b><span>Everyone gets the same question. Where it goes from there is up to the table.</span></div></li>
-    <li><span class="seat" aria-hidden="true"></span><div><b>After the first round, groups rotate</b><span>New table, new people, same question from a different angle. The second round is the table's to shape.</span></div></li>
+    <li><span class="seat" aria-hidden="true"></span><div><b>One question opens <span id="js-opens">each round</span></b><span>Everyone gets the same question. Where it goes from there is up to the table.</span></div></li>
+    <li><span class="seat" aria-hidden="true"></span><div><b>After the first round, groups rotate</b><span>New table, new people, <span id="js-rotate">a new topic</span>. The second round is the table's to shape.</span></div></li>
     <li><span class="seat" aria-hidden="true"></span><div><b>We close together</b><span>Everyone back in one room. One thing you heard that you're still thinking about.</span></div></li>
   </ol>
 
@@ -641,17 +653,33 @@ html{scroll-behavior:smooth}
   var d = window.CAFETERIA_EVENT;
   if(!d) return;
 
-  var eyebrowEl = document.getElementById('js-ask-eyebrow');
-  if(eyebrowEl) eyebrowEl.textContent = d.askEyebrow;
+  var multi = Array.isArray(d.rounds) && d.rounds.length > 1;
 
-  var q = document.getElementById('js-question');
-  if(q) q.innerHTML = d.question;
+  var askEl = document.getElementById('js-ask');
+  if(askEl && Array.isArray(d.rounds) && d.rounds.length){
+    askEl.innerHTML = d.rounds.map(function(r){
+      var label = r.label || (multi ? '' : d.askEyebrow);
+      return '<div class="round">' +
+        (label ? '<p class="eyebrow">' + label + '</p>' : '') +
+        '<p class="question">' + r.question + '</p></div>';
+    }).join('');
+  }
+
+  var opensEl = document.getElementById('js-opens');
+  if(opensEl) opensEl.textContent = multi ? 'each round' : 'the night';
+  var rotateEl = document.getElementById('js-rotate');
+  if(rotateEl) rotateEl.textContent = multi ? 'a new topic' : 'same question from a different angle';
 
   var dateEl = document.getElementById('js-date');
   if(dateEl) dateEl.textContent = d.date;
 
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+  function part(v, name){
+    var s = (v || '').trim();
+    return (!s || /^tbd$/i.test(s)) ? '<span class="tbd">' + name + ' TBD</span>' : esc(s);
+  }
   var whereEl = document.getElementById('js-time-location');
-  if(whereEl) whereEl.textContent = d.timeAndLocation;
+  if(whereEl) whereEl.innerHTML = part(d.time, 'Time') + ' · ' + part(d.location, 'Location');
 
   var tableSizeEl = document.getElementById('js-table-size');
   if(tableSizeEl) tableSizeEl.textContent = d.tableSize;
