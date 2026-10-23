@@ -36,7 +36,7 @@ window.CAFETERIA_EVENT = {
   // Two entries = two rounds. For a one-question night, keep a single entry:
   // leave label as "" and it reads "This one opens with" (see askEyebrow).
   rounds: [
-    { label: "Round 1 — Protests",      question: "What would it take for you to protest?" },
+    { label: "Round 1 — Protests",      question: "How do you feel about protests and protestors?" },
     { label: "Round 2 — Mental health", question: "How are we actually handling our mental health?" }
   ],
 
