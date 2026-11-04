@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Cafeteria — link preview card (source)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..800,0..100,0..1&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E110D;
+  --ink-3:#212821;
+  --moss-lit:#87AB8C;
+  --bone:#E9E5D9;
+  --amber:#D9A441;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Karla",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1200px;height:630px;overflow:hidden}
+body{
+  background:var(--ink);
+  color:var(--bone);
+  font-family:var(--body);
+  -webkit-font-smoothing:antialiased;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:76px 88px 72px;
+}
+.name{
+  font-weight:500;
+  font-size:26px;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--moss-lit);
+  margin:0;
+}
+.tagline{
+  font-family:var(--display);
+  font-variation-settings:"SOFT" 40,"WONK" 1,"opsz" 144;
+  font-weight:400;
+  font-size:112px;
+  line-height:1.02;
+  letter-spacing:-.025em;
+  margin:0;
+  max-width:980px;
+  text-wrap:balance;
+}
+.foot{
+  border-top:1px solid var(--ink-3);
+  padding-top:34px;
+}
+.date{
+  font-family:var(--display);
+  font-variation-settings:"SOFT" 20,"opsz" 72;
+  font-weight:600;
+  font-size:48px;
+  line-height:1.2;
+  color:var(--amber);
+  margin:0;
+}
+</style>
+</head>
+<body>
+  <p class="name">The Cafeteria</p>
+  <h1 class="tagline">An evening of conversation</h1>
+  <div class="foot">
+    <p class="date" id="date">Saturday, November 21</p>
+  </div>
+
+  <!-- The date comes from config.js, the same value the site uses. -->
+  <script src="../config.js"></script>
+  <script>
+    if (window.CAFETERIA_EVENT && window.CAFETERIA_EVENT.date) {
+      document.getElementById('date').textContent = window.CAFETERIA_EVENT.date;
+    }
+  </script>
+</body>
+</html>

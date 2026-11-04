@@ -21,7 +21,7 @@ The form in `index.html` is already wired for it (`data-netlify="true"`). Once t
 
 1. In your Netlify site dashboard, go to **Forms**. Netlify auto-detects the form from the static HTML on the first deploy — you'll see it listed as "rsvp."
 2. Go to **Forms → Settings and usage → Form notifications → Add notification → Email notification**. Set it to your email. Now every RSVP lands in your inbox.
-3. All submissions (name, contact, attending yes/no, guest, note) are also visible any time in the Forms tab, exportable as CSV — handy for a headcount before the event.
+3. All submissions (name, who invited you, contact, invited yes/no, attending yes/no, guest, note) are also visible any time in the Forms tab, exportable as CSV — handy for a headcount before the event.
 
 That's the whole setup. No signup elsewhere, no code changes.
 
@@ -41,6 +41,23 @@ The `rsvp` form does double duty: one question near the top ("Were you personall
    ```
    (Remove the `data-netlify`, `netlify-honeypot`, and hidden `form-name`/`bot-field` lines — those are Netlify-specific.)
 4. Formspree's free tier: 50 submissions/month, email notification built in, submissions also visible in their dashboard.
+
+## Link preview card (the image that shows when the link is texted)
+
+`og-image.png` is the 1200×630 card Messages, WhatsApp and Slack show when someone pastes the link. It's a static file in the repo. The date on it is read from `config.js` (the same `date` the hero uses), so the date lives in one place.
+
+Each event, after you update `date` in `config.js`:
+
+```bash
+./og/make-og.sh
+```
+
+Then commit and push `og-image.png` along with `config.js`. The script needs Google Chrome and an internet connection (the card loads the same Google Fonts as the site). The card's layout is `og/og.html`.
+
+Two things to know:
+
+- **Previews are cached.** Messages and WhatsApp remember the preview for a link they've already seen, so an old link can keep showing the old date. To force a fresh preview, change the image address in `index.html` (`og:image`) to `og-image.png?v=2`, then `?v=3` next time, and so on.
+- **The site address is written into the page's `og:url` and `og:image` tags.** When you move to a custom domain, update both in `index.html`.
 
 ## Deploying (Netlify)
 
